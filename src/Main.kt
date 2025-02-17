@@ -2,13 +2,11 @@ import kotlin.math.abs
 import kotlin.math.min
 
 fun main() {
-    var canales = readln().split(" ")
-    while (canales != listOf(0, 0)) {
-        var resultado=min(
-            abs(canales.first().toInt()-canales.last().toInt()),
-            (99-abs(canales.first().toInt()-canales.last().toInt()))
-        )
-        println(resultado)
-        canales = readln().split(" ")
-    }
+    generateSequence(::readLine)
+        .takeWhile { it != "0 0" }
+        .forEach { line ->
+            val (a, b) = line.split(" ").map { it.toInt() }
+            val diff = abs(a - b)
+            println(min(diff, 99 - diff))
+        }
 }
